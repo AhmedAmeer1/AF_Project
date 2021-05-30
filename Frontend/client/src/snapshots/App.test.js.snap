@@ -1,0 +1,28 @@
+exports[`App component matches the snapshot 1`]=`  <div className="App">
+
+
+
+                                                       <Router>
+                                                       <Header />
+
+                                                 <div className="container">
+                                                     <Switch>
+                                                         <Route path="/"  exact component={Home}></Route>
+                                                         <Route path="/registration" component={Registration}></Route>
+                                                         <Route path="/updateUser" component={UpdateRegistration}></Route>
+                                                         <Route path="/admin-view" component={AdminViewUsers}></Route>
+                                                         <Route path="/img" component={Clouduploading}></Route>
+                                                         <Route path="/ImageView" component={ImageView}></Route>
+
+                                                         ImageView
+
+
+
+                                                     </Switch>
+                                                 </div>
+
+
+                                                 </Router>
+
+
+                                                     </div>`;
