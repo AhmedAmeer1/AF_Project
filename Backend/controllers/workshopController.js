@@ -21,7 +21,44 @@ const workshopController ={
             return res.send(500).json({msg: error.message})
         }
 
+    } 
+    
+    ,
+
+    getWorkshopDetail : async (req,res)=>{
+        try {
+            const workshops= await workshopModel.find().then(workshop => res.json(workshop));
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+
+
+
+    updateWorkshopDetail : async (req,res)=>{
+        try {
+            console.log("inside update controller")
+
+            console.log(req.params.id)
+
+            const {status}=req.body;
+
+            console.log(status)
+            console.log(req.body)
+
+            await workshopModel.findOneAndUpdate({_id: req.params.id}, {
+                status
+            })
+
+
+
+
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
     }
+
+
 
     
 
