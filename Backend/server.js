@@ -5,31 +5,7 @@ const cors = require('cors')
 const fileUpload = require('express-fileupload')
 const cookieParser = require('cookie-parser')
 
-//////////\
 
-/*
-const storage = multer.diskStorage({
-    //destination for files
-    destination: function (request, file, callback) {
-      callback(null, './public/uploads/images');
-    },
-  
-    //add back the extension
-    filename: function (request, file, callback) {
-      callback(null, Date.now() + file.originalname);
-    },
-  });
-  
-  //upload parameters for multer
-  const upload = multer({
-    storage: storage,
-    limits: {
-      fieldSize: 1024 * 1024 * 3,
-    },
-  });
-*/
-
-/////////
 
 
 
@@ -63,23 +39,17 @@ app.get('/',(req,res)=>{
 })
 
 
+
 app.use('/user',require('./routes/userRouter'));
 app.use('/admin',require('./routes/adminRouter'));
 //app.use('/upload',require('./routes/imageRouter'));
 app.use('/api', require('./routes/upload'))
 app.use('/api', require('./routes/productRouter'))
-
-// app.use('/api/upload',(req,res)=>{
-
-//   res.send({msg:"hiiiiiiiiii"})
-// })
+app.use('/conference', require('./routes/conferenceRouter'))
+app.use('/workshop', require('./routes/workshopRouter'))
+app.use('/researchPaper', require('./routes/researchPaperRouter'))
 
 
-
-/*app.use('/upload',(req,res)=>{
-
-    res.send({msg:"hiiiiiiiiii"})
-})*/
 
 
 // connect to the mongodb
