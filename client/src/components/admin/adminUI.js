@@ -1,20 +1,44 @@
 import React, { PureComponent } from 'react'
+import {Link} from 'react-router-dom'
+import decode from 'jwt-decode';
+
+import Header from './header/adminHeader'
 
 class AdminUI extends PureComponent {
     constructor(props) {
         super(props)
 
         this.state = {
-            
+            user:''
         }
+    }
+    componentDidMount() {
+
+        if(sessionStorage.token){
+            this.setState({user:decode(sessionStorage.token).email})
+        }
+
     }
 
     render() {
+        console.log("inside")
+    
+      
         return (
-          
-            <div>
+         
+            <div className="App">
 
-            <h1>welcome Admin</h1>
+                       
+                    <Header   />
+                   
+
+
+
+            <h1>welcome Admin {this.state.user}</h1>
+
+
+
+
 
         </div>
 
