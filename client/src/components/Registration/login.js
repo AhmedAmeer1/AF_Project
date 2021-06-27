@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import axios from 'axios'
+import Header from'../header/header'
+import './login.css'
 
 class Login extends PureComponent {
     constructor(props) {
@@ -14,7 +16,8 @@ class Login extends PureComponent {
        
             email:'',
             password:'',
-            loginUser:''
+            loginUser:'',
+            name:''
             
         }
     }
@@ -46,16 +49,23 @@ class Login extends PureComponent {
                 }
                 console.log(users);
 
-                axios.post('http://localhost:5000/user/login',users).then(res =>{this.setState({loginUser:res.data})})
-
+                axios.post('http://localhost:5000/user/login',users).then(res=>{ sessionStorage.setItem("token",res.data)}
+                   
+                )
+console.log(sessionStorage)
                 
                 axios.post('http://localhost:5000/user/login',users).then(res =>
                 {
                     res.data.role==='user'? this.props.history.push('/userUI')
                     :
-                    res.data.role==='admin'?  this.props.history.push('/editorUI')
+                    res.data.role==='editor'?  this.props.history.push('/editorUI')
                     :
-                    this.props.history.push('/editorUI')
+                    res.data.role==='reviewer'?  this.props.history.push('/reviwerUI')
+                    :
+                    this.props.history.push('/adminUI')
+
+
+
                 
                 
                 })
@@ -96,19 +106,23 @@ class Login extends PureComponent {
     render() {
         return (
             <div>
+               < Header />
+            <div className="login-page">
                 <h1>LOGIN FORM </h1>
 
             <form  onSubmit={this.onSubmit}>
 
             
-              <p>Email  <input type='text'  name="email"  value={this.state.email}  onChange={this.onChangeEmail}/></p>
-              <p>Password  <input type='text'  name="password"  value={this.state.password}  onChange={this.onChangePassword}/></p>
+                <input type='text'  placeholder="Email" name="email"  value={this.state.email}  onChange={this.onChangeEmail}/>
+             <input type='text'  placeholder="password" name="password"  value={this.state.password}  onChange={this.onChangePassword}/>
 
-                <input type='submit' value="submit" />
-
+              <div className="row">
+              <button type="submit">Login</button>
+                </div>
 
             </form>
 
+            </div>
             </div>
         )
     }
