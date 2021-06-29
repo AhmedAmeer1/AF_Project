@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import axios from 'axios'
-import Header from'../header/header'
+import Myheader from "../header/myheader";
 import './login.css'
 
 class Login extends PureComponent {
@@ -106,19 +106,35 @@ console.log(sessionStorage)
     render() {
         return (
             <div>
-               < Header />
-            <div className="login-page">
+               < Myheader />
+               <br/>
+               <br/>
+            <div className="login-page" style={{borderColor:"red"}}>
+                
                 <h1>LOGIN FORM </h1>
 
-            <form  onSubmit={this.onSubmit}>
+            <form  onSubmit={this.onSubmit} style={{borderColor:"red"}}>
 
             
-                <input type='text'  placeholder="Email" name="email"  value={this.state.email}  onChange={this.onChangeEmail}/>
-             <input type='text'  placeholder="password" name="password"  value={this.state.password}  onChange={this.onChangePassword}/>
+            
 
-              <div className="row">
-              <button type="submit">Login</button>
-                </div>
+            <div className="form-group" style={{borderColor:"red"}}>
+                  
+                    <input type="text" className="form-control"  style={{borderColor:"red"}} placeholder="Enter Email" name="email"  value={this.state.email}  onChange={this.onChangeEmail} />
+            </div>    
+
+
+           
+
+            <div className="form-group" style={{borderColor:"red"}}>
+                   
+                    <input type="password" className="form-control"  style={{borderColor:"red"}} placeholder="Enter Password" name="password"  value={this.state.password}  onChange={this.onChangePassword} />
+            </div>   
+
+
+            <div className="row">
+              <button type="submit"  style={{backgroundColor:"#DC3545", border:"none", marginLeft:"20px"}}>submit</button>
+              </div>
 
             </form>
 
